@@ -3,32 +3,27 @@
  * @return {number}
  */
 var calPoints = function(operations) {
-    let array = [];
-    let sum = 0;
+    let stack = [];
     
-    for (let i = 0; i < operations.length; i++) {
-        let char = operations[i];
-        switch (char){
+    for (let op of operations) {
+        switch (op){
             case "+":
-                array.push(array[array.length-1] + array[array.length-2]);
+                stack.push(stack.at(-1)+ stack.at(-2));
                 break;
             case "D":
-                array.push(array[array.length-1] * 2);
+                stack.push(stack.at(-1) * 2);
                 break;
             case "C":
-                array.pop();
+                stack.pop();
                 break;
             default:
-                array.push(parseInt(char));
+                stack.push(parseInt(op));
         }
     }
 
-    for (i = 0; i < array.length; i++) {
-        console.log(array[i]);
-        sum = sum + array[i];
-    }
+    return stack.reduce((a, b) => a + b, 0);
     
-    return sum;
+    return stack;
 
 
 };
