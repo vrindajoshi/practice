@@ -19,7 +19,6 @@ var numberOfSpecialChars = function(word) {
                 map.set(ch + 32, false);
             }
         } else if (!map.has(ch)) {
-            console.log(ch);
             map.set(ch, true);
         } else if (map.get(ch) == false) {
             special--;
